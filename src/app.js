@@ -6,21 +6,19 @@ require('dotenv').config();
 const app = express();
 
 
-conectarDB();
-
-
 app.use(cors());
 app.use(express.json());
+
+
+conectarDB();
 
 
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
-
 app.get('/', (req, res) => {
   res.send('API Funcionando 🚀');
 });
-
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
